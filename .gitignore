@@ -1,0 +1,8 @@
+# Standard Cmake
+build/
+# CLion
+.idea/
+cmake-build-*/
+# Qt creator
+build-*/
+*.user
