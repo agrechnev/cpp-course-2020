@@ -1,18 +1,15 @@
 # Minimal cmake version required
 cmake_minimum_required(VERSION 3.1)
 
-# Language version
-set(CMAKE_CXX_STANDARD 14)
-
 # Project title
-project(e1_1)
+project(e2_2)
 
 # Language version required: C++ 14
 set(CMAKE_CXX_STANDARD 14)
 
 # Source files
 set(SRCS 
-    hello.cpp
+    main.cpp
 )
 
 #  Executable created from ${SRCS}

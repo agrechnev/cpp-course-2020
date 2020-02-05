@@ -1,9 +1,6 @@
 # Minimal cmake version required
 cmake_minimum_required(VERSION 3.1)
 
-# Language version
-set(CMAKE_CXX_STANDARD 14)
-
 # Project title
 project(e1_3)
 
