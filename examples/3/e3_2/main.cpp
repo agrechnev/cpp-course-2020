@@ -89,7 +89,7 @@ void print(const string & s) {
 // Block 4 : Templates
 
 /// Add two numbers : template version
-template <typename T>
+template <typename T>  // OR "template <class T>"
 T tmplAdd(T a, T b) {
     return a + b;
 }
@@ -157,6 +157,9 @@ int main() {
         cout << "tmplAdd<double>(3, 4.2) = " << tmplAdd<double>(3, 4.2) << endl;
         // Note: You need to create string() explicitly, does not work with string literals !
         cout << "tmplAdd(string(\"Hello \"), string(\"World !\")) = " << tmplAdd(string("Hello "), string("World !")) << endl;
+        // ... Unless you give the explicit type
+        cout << "tmplAdd<string>(\"Hello \", \"World !\") = " << tmplAdd<string>("Hello ", "World !") << endl; // COnverted to string
+        
         
         // printContainer
         // Works even with C-arrays ! (But NOT pointers !)
