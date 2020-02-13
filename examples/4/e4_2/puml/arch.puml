@@ -1,0 +1,37 @@
+@startuml
+
+abstract class Entity{
+# name : std::string
++ Entity(name : const std::string &)
++ {abstract} printMe() : void
++ action() : void
+}
+
+class Monster {
+# type : std::string
+# level : int
++ Monster(name : const std::string &, type : const std::string &, level : int)
++ printMe() : void
++ action() : void
+}
+
+class Person {
+# name : std::string
+# age : int
++ Person(name : const std::string &, age : int)
++ sayHi() : void
++ sayBye() : void
+}
+
+class Vampire {
++ Vampire(name : const std::string &, age : int)
++ printMe() : void
++ sayHi() : void
++ sayBye() : void
+}
+
+Entity <|.. Monster
+Monster <|-- Vampire
+Person <|-- Vampire
+
+@enduml

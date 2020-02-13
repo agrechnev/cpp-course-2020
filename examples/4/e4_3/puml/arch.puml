@@ -1,0 +1,28 @@
+@startuml
+
+class Animal{
++ weight: double
++ Animal(w : double)
++ eat() : void
+}
+
+class Mammal {
++ Mammal(w : double)
++ breathe() : void
+}
+
+class WingedAnimal {
++ WingedAnimal(w : double)
++ flap() : void
+}
+
+class Bat {
++ Bat(w : double)
+}
+
+Animal <|-- Mammal
+Animal <|-- WingedAnimal
+Mammal <|-- Bat
+WingedAnimal <|-- Bat
+
+@enduml
