@@ -7,6 +7,7 @@
 #include <utility>
 #include <optional>
 #include <any>
+#include <typeinfo>
 //=========================
 int main() {
     using namespace std;
@@ -31,7 +32,7 @@ int main() {
         cout << p5.first << " : " << p5.second << endl;
     }
 
-    // optional
+    // optional : Container with either object or no object
     {
         cout << "\n\nstd::optional\n\n" << endl;
         
@@ -50,11 +51,49 @@ int main() {
         }
         cout << "o2.value_or(\"Default string\") = " << o2.value_or("Default string") << endl;   // Replace by default if empty
         
+        
+        o2.reset(); // Make o2 empty
+        // NOw o2 is empty
+        cout << "AFter reset() : o2.has_value() = " << o2.has_value()  << endl;
+        
+        // COnstruct string object in place without copy/move
+        o2.emplace("Pripps Blå"); 
+        cout << "Now o2.value() = " << o2.value() << endl;
+        o2 = nullopt; // Same as reset() : nullify o3
+        cout << "AFter nullopt: o2.has_value() = " << o2.has_value()  << endl;
+        
+        // Construct with make_optional (don't copy/move string object)
+        o2 = make_optional<string>("Spendrups");
+        cout << "Now o2.value() = " << o2.value() << endl;
     }
     
-    // any
+    // any : Container with object of any type (with copy contructor), can also be empty
     {
+        cout << "\n\nstd::any\n\n" << endl;
         
+        any a;  // Empty
+        cout << "type =" << a.type().name() << ", has_value = " << a.has_value() << endl;
+        
+        // Now let us assign int to a
+        a = 17; 
+        cout << "type =" << a.type().name() << ", value = " << any_cast<int>(a) << endl;
+        // Compare to a known type
+        cout << "(a.type() == typeid(int)) = " <<  (a.type() == typeid(int)) << endl; // Note (), == has lower priority than << !
+
+        // any_cast throws bad_any_cast if the type is wrong !
+        try {
+            cout << "type =" << a.type().name() << ", value = " << any_cast<double>(a) << endl;
+        } catch (const exception & e) {
+            cout << "Caught exception : " << e.what() << endl;
+        }
+        
+        // Now let us assign string to a
+        a = string("Reimi Saionji");
+        cout << "type =" << a.type().name() << ", value = " << any_cast<string>(a) << endl;
+        
+        // Finally, make a empty again
+        a.reset();
+        cout << "type =" << a.type().name() << ", has_value = " << a.has_value() << endl;
     }
 
     return 0;
