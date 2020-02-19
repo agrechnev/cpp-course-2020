@@ -119,6 +119,11 @@ int main(){
         int *pI = &i;     // Pointer
         long long j = reinterpret_cast<long long>(pI);
         cout << "j = " << j << endl;
+        
+        
+        // Cast int * to double *:
+        double *pD = reinterpret_cast<double *>(pI);
+        cout << "*pD = " << *pD << endl;
     }
 
     return 0;
