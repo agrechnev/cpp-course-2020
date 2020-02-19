@@ -176,7 +176,7 @@ int main() {
         cout << "And even more iterator-like syntax : \n";
         // Note: exactly the same loop will print a container like std::vector
         // C++ iterators arouse out practice of using pointers to iterate over an array
-        for (const auto *it = begin(names); it != end(names); ++it)
+        for (auto it = begin(names); it != end(names); ++it)
             cout << *it << " ";
         cout << endl;
     }
