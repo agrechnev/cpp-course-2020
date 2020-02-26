@@ -97,7 +97,7 @@ int main(){
         Base & rB = d;
         Base * pB = &d;
         Derived & rD =  dynamic_cast<Derived &>(rB);   // Downcast
-        Derived * pD =  dynamic_cast<Derived *>(pB);   // No checks  !
+        Derived * pD =  dynamic_cast<Derived *>(pB);   // With checks  !
         rD.print();  // Prints "Derived" twice
         pD->print();
 
