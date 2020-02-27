@@ -31,7 +31,7 @@ int main(){
     }
     
     // Create a new path
-    // Note: overloading the / operator
+    // Note: overloaded / operator !
     filesystem::path p2 = p / "newdir";
     cout << "p2 = " << p2 << endl;
     cout << "filesystem::exists(p2) = " << filesystem::exists(p2) << endl;  // Does not exist !
