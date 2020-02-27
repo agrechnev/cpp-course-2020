@@ -10,9 +10,10 @@
 int main(){
     using namespace std;
 
+    // Create a path
     filesystem::path p("."); // Current directory
     
-    // Create a path
+    
     cout << "p = " << p << endl;
     // Check that it exists
     cout << "filesystem::exists(p) = " << filesystem::exists(p) << endl;
