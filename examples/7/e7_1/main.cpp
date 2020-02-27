@@ -193,11 +193,11 @@ int main() {
 //        printOp(z.op);   // This does not work !
 
         // Class methods have invisible first argument this :
-        function<int(Z*, int, int)> funny = Z::op; // This works !
+        function<int(Z*, int, int)> funny = &Z::op; // This works !
 
         // You have to use bind or lambda wrapper (preferred !)
         // Note the hidden 1st argument, which is this (&z) !
-        printOp(bind(Z::op, &z, placeholders::_1, placeholders::_2));
+        printOp(bind(&Z::op, &z, placeholders::_1, placeholders::_2));
         printOp([&z](int x, int y)->int{
             return z.op(x,y);
         });
