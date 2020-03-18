@@ -21,13 +21,8 @@ int main(){
     int nF = n*sizeof(float);
     
     // Create data in the CPU memory (host)
-    std::vector<float> x(n), y(n);
+    std::vector<float> x(n, 2.0f), y(n, 1.0f);
     
-    // Initialize host
-    for (int i=0; i<n; ++i) {
-        x[i] = 2.0f;
-        y[i] = 1.0f;
-    }
     
     // Allocate GPU (device) memory
     float *dX, *dY;
