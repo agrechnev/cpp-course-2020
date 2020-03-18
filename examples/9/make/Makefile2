@@ -1,0 +1,23 @@
+CXX = g++
+CXXFLAGS = -Wall -g
+LIBS = 
+
+.PHONY: all
+all: example
+
+example : main.o a.o B.o
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LIBS)
+	
+main.o : main.cpp a.h B.h
+	$(CXX) $(CXXFLAGS) -c $<  
+	
+a.o : a.cpp a.h
+	$(CXX) $(CXXFLAGS) -c $<
+	
+B.o : B.cpp B.h
+	$(CXX) $(CXXFLAGS) -c $<
+
+.PHONY: clean
+clean:
+	-rm *.o example
+	-del *.o example.exe

@@ -1,0 +1,4 @@
+#cmakedefine WITH_MAGIC  @WITH_MAGIC@          // Defined only if NOT OFF/0/NO
+#define WITH_ELVES  @WITH_ELVES@               // Defined always
+// Defined as 0, 1
+#cmakedefine01 WITH_ORCS
