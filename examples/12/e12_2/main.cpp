@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <vector>
+#include <complex>
 
 #include <cblas.h>
 #include <lapacke.h>
@@ -137,22 +138,26 @@ void demoBlas3dgemm(){
 }
 
 //======================================
-void demoLapackDgels() {
-    int m = 3; // Number of datas
-    int n = 2; // Number of funcs
+void demoLapackZheev() {
+    cout << "\nDiagonalize real hermitian matrix : LAPACKE_zheevr !\n" << endl;
+    double a[2][2] = {0., 1., 1, 0.};
+    int n = 2; // DImension of a
+    int lda = 2; // Leading dimension of z
+    char jobz = 'V'; // Compute e-values + e-vectors
+    char range = 'A'; // Compute all e-values
+    char uplo = 'U'; // Upper triangular part of a
 
-    double a[3][2] = {1., 0., 1., 1., 1., 2.};
-    double b[3] = {3., 10., 17.};
-
-    int info = LAPACKE_dgels(LAPACK_ROW_MAJOR,'N',m,n,1,(double *)a,n,(double *)b,1);
-
-    cout << "info = " << info << endl;
-
-    for (int i = 0; i < 2; ++i) {
-        cout << b[i] << " ";
+    double z[2][2]; // Output eigenvectors
+    int ldz = 2; // Leading dimension of z
+    double w[2] {-3.14, -3.14}; // Output eigenvalues
+    int m = -1; //Output: number of e-values found
+    int isuppz[4]; // "Support output"
+    LAPACKE_dsyevr(LAPACK_COL_MAJOR, jobz, range, uplo, n, (double *)a, lda, 0, 0, 0, 0, 0, &m, w, (double *)z, ldz, isuppz);
+    cout << "Found e-values : " << m << endl;
+    for (int i = 0; i < m; ++i) {
+        cout << "eval" << i << " = " << w[i] << ", evec = [" << z[i][0] << ", " << z[i][1] << "]" << endl;
     }
-    cout << endl;
-};
+}
 //======================================
 int main () {
 
@@ -175,7 +180,7 @@ int main () {
     cout << "\n============================================\n";
     cout << "LAPACK: the REAL linear algebra " << endl;
 
-    demoLapackDgels();
+    demoLapackZheev();
 
     return 0;
 }
