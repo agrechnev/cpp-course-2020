@@ -70,19 +70,19 @@ void print3(const C & c){
 
 /// My own version of std::find, iterator-based
 template <typename I, typename T>
-I myFind(const I & begin, const I & end, const T & val){
-    for (I it = begin; it != end; ++it) {
+I myFind(const I & first, const I & last, const T & val){
+    for (I it = first; it != last; ++it) {
         if (val == *it)
             return it;
     }
-    return end;
+    return last;
 }
 
 /// Find first negative number in container given by 2 iterators, stupid version
 /// Return the element as const ref
 template <typename R, typename I>
-const R & findNeg1(const I & begin, const I & end){
-    for (I it = begin; it != end; ++it)
+const R & findNeg1(const I & first, const I & last){
+    for (I it = first; it != last; ++it)
         if (*it < 0)
             return *it;
     throw runtime_error("NOT FOUND !");
@@ -90,8 +90,8 @@ const R & findNeg1(const I & begin, const I & end){
 
 /// Clever version with decltype
 template <typename I>
-auto findNeg2(const I & begin, const I & end) -> const decltype(*end) & {
-    for (I it = begin; it != end; ++it)
+auto findNeg2(const I & first, const I & last) -> const decltype(*last) & {
+    for (I it = first; it != last; ++it)
         if (*it < 0)
             return *it;
     throw runtime_error("NOT FOUND !");

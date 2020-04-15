@@ -39,7 +39,7 @@ public: //=== Operators
 public: //=== Methods
     /// assign from an iterator pair
     template <typename I>
-    void assign(I begin, I end);
+    void assign(I first, I last);
 
     // Idexing
     T & at(std::size_t i){
@@ -106,10 +106,10 @@ public: //========== Data
 
 template<typename T, size_t N>
 template<typename I>
-void MyArray<T, N>::assign(I begin, I end)
+void MyArray<T, N>::assign(I first, I last)
 {
     int i = 0;
-    for (I it = begin; it != end; ++it, ++i)
+    for (I it = first; it != last; ++it, ++i)
         at(i) = *it;
 }
 
