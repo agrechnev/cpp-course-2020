@@ -46,8 +46,8 @@ void demoBlas1Dot(){
 
     // Blas always works with pointers !
     int n = 4; // Vector size
-    int incx = 1, incy = 1; // Strides of x, y
-    double result = cblas_ddot(n, a.data(), incx, b, incy);
+    int inca = 1, incb = 1; // Strides of a, b
+    double result = cblas_ddot(n, a.data(), inca, b, incb);
     cout << "a.dot(b) = " << result << " , expected = 2" << endl;
 }
 //======================================
@@ -138,8 +138,8 @@ void demoBlas3dgemm(){
 }
 
 //======================================
-void demoLapackZheev() {
-    cout << "\nDiagonalize real hermitian matrix : LAPACKE_zheevr !\n" << endl;
+void demoLapackDsyevr() {
+    cout << "\nDiagonalize real hermitian matrix : LAPACKE_dsyevr !\n" << endl;
     double a[2][2] = {0., 1., 1, 0.};
     int n = 2; // DImension of a
     int lda = 2; // Leading dimension of z
@@ -180,7 +180,7 @@ int main () {
     cout << "\n============================================\n";
     cout << "LAPACK: the REAL linear algebra " << endl;
 
-    demoLapackZheev();
+    demoLapackDsyevr();
 
     return 0;
 }
